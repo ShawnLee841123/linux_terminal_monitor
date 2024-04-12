@@ -137,11 +137,11 @@ void get_mem_usage(double *mem_used)
         }
         if (strstr(line, "MemAvailable") != NULL) {
             sscanf(line, "%*s%d%*s", &avimem);
-	    free(line);
+
 	    break;
         }
-	free(line);
     }
+    free(line);
     int t = info.totalram / 1024.0;
     *mem_used = (t - avimem) * 100 / t;
 
@@ -327,9 +327,10 @@ void get_rtx_bytes(char *name, RTX_BYTES *rtx)
             printf("name:%16s\t tx:%10ld\trx:%10ld\n", name, rtx->tx_bytes,
                    rtx->rx_bytes);
 #endif
-	    free(line);
-        }
+	}
     }
+
+    free(line);
     fclose(net_dev_file);
 }
 
