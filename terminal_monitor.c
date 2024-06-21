@@ -30,7 +30,7 @@ NET_INTERFACE *p_interface = NULL;
 
 HOST_STATE host_core;
 
-void *thread_net(void *arg)
+void* thread_net(void *arg)
 {
     printf("%s\n", __FUNCTION__);
 
@@ -41,7 +41,7 @@ void *thread_net(void *arg)
     }
 }
 
-void *thread_core(void *arg)
+void* thread_core(void *arg)
 {
     printf("%s\n", __FUNCTION__);
     while (1) {
@@ -441,9 +441,9 @@ int main()
     //创建两个线程
     pthread_t thread_net_id, thread_core_id;
     //线程1：网络信息监控线程
-    pthread_create(&thread_net_id, NULL, (void *)thread_net, NULL);
+    pthread_create(&thread_net_id, NULL, &thread_net, NULL);
     //线程2：CPU、内存信息监控
-    pthread_create(&thread_core_id, NULL, (void *)thread_core, NULL);
+    pthread_create(&thread_core_id, NULL, &thread_core, NULL);
 
     pthread_join(thread_net_id, NULL);
     pthread_join(thread_core_id, NULL);
